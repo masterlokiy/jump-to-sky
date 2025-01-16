@@ -1,0 +1,93 @@
+[gd_scene load_steps=11 format=3 uid="uid://dvcfxx3ajpilb"]
+
+[ext_resource type="Texture2D" uid="uid://hw7g73vnr67w" path="res://assets/bahan/clouds/Lightning/lightning1.png" id="1_j3c34"]
+[ext_resource type="Texture2D" uid="uid://15fwq5wydqhn" path="res://assets/bahan/black clouds/cloud_shape2_1.png" id="1_rswji"]
+[ext_resource type="Texture2D" uid="uid://c4jg6mqqdsx11" path="res://assets/bahan/clouds/Lightning/lightning2.png" id="2_5cr4a"]
+[ext_resource type="Texture2D" uid="uid://dkx8pcunbdvjg" path="res://assets/bahan/clouds/Lightning/lightning3.png" id="3_try2y"]
+[ext_resource type="Texture2D" uid="uid://ddlivvjp2rcdb" path="res://assets/bahan/clouds/Lightning/lightning4.png" id="4_7542p"]
+[ext_resource type="Texture2D" uid="uid://bs0ba7uwjrrac" path="res://assets/bahan/clouds/Lightning/lightning5.png" id="5_cyioh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_boh88"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_j3c34")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_5cr4a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_try2y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7542p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_cyioh")
+}],
+"loop": true,
+"name": &"strike",
+"speed": 6.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3ebn3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_j3c34")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_5cr4a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_try2y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7542p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_cyioh")
+}],
+"loop": true,
+"name": &"strike",
+"speed": 6.0
+}]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_8b3nv"]
+a = Vector2(-199, -44)
+b = Vector2(215, -53)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wbgy1"]
+size = Vector2(328, 79.125)
+
+[node name="black_clouds" type="StaticBody2D" groups=["platform"]]
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-96, 8)
+sprite_frames = SubResource("SpriteFrames_boh88")
+animation = &"strike"
+autoplay = "strike"
+frame_progress = 0.720627
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(88, -8)
+sprite_frames = SubResource("SpriteFrames_3ebn3")
+animation = &"strike"
+autoplay = "strike"
+frame_progress = 0.162785
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(6.99997, -66)
+scale = Vector2(1.548, 2.456)
+texture = ExtResource("1_rswji")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("SegmentShape2D_8b3nv")
+one_way_collision = true
+
+[node name="black_clouds" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="black_clouds"]
+position = Vector2(12, -32.4375)
+shape = SubResource("RectangleShape2D_wbgy1")

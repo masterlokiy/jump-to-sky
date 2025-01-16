@@ -1,0 +1,158 @@
+[gd_scene load_steps=17 format=3 uid="uid://h132xx78cnik"]
+
+[ext_resource type="Texture2D" uid="uid://mkse860aqk4l" path="res://assets/bahan/block/Daco_1443556.png" id="1_fqu43"]
+[ext_resource type="Script" path="res://scripts/special_platform.gd" id="1_ilry4"]
+[ext_resource type="Texture2D" uid="uid://dgwe2yujfx38w" path="res://assets/bahan/block/41c95acea5a0f7791114e16f323b7ce4.png" id="2_c372f"]
+[ext_resource type="Texture2D" uid="uid://bwytmup7nqwxe" path="res://assets/bahan/block/Mossy_Ruin_Tiles.webp" id="3_mw375"]
+[ext_resource type="Texture2D" uid="uid://tlg7xju7vjfd" path="res://assets/bahan/block/skull.jpeg" id="4_6t8py"]
+[ext_resource type="Texture2D" uid="uid://crrfvjlgr0u7v" path="res://assets/bahan/block/Disappearing_Block.webp" id="5_04w8c"]
+[ext_resource type="PackedScene" uid="uid://b7ggv7kptkj31" path="res://scenes/clouds.tscn" id="7_4rvx1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blqr0"]
+atlas = ExtResource("2_c372f")
+region = Rect2(0, 0, 250, 592)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yp7qf"]
+atlas = ExtResource("2_c372f")
+region = Rect2(250, 0, 250, 592)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14tf7"]
+atlas = ExtResource("2_c372f")
+region = Rect2(500, 0, 250, 592)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6v0a5"]
+atlas = ExtResource("2_c372f")
+region = Rect2(750, 0, 250, 592)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mpsex"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blqr0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yp7qf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14tf7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6v0a5")
+}],
+"loop": true,
+"name": &"portal",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yyj3i"]
+size = Vector2(680, 144)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qpc5o"]
+size = Vector2(120, 392)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xwb7q"]
+size = Vector2(131, 266)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_crxal"]
+radius = 48.0
+height = 176.0
+
+[node name="StaticBody2D" type="StaticBody2D"]
+position = Vector2(528, 1024)
+script = ExtResource("1_ilry4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(272, -292.528)
+scale = Vector2(0.436, 0.44773)
+sprite_frames = SubResource("SpriteFrames_mpsex")
+animation = &"portal"
+autoplay = "portal"
+frame_progress = 0.542563
+
+[node name="Sprite2D11" type="Sprite2D" parent="."]
+position = Vector2(-4, 2.38419e-06)
+scale = Vector2(1.0625, 1)
+texture = ExtResource("3_mw375")
+
+[node name="Sprite2D12" type="Sprite2D" parent="."]
+position = Vector2(-272, -272)
+scale = Vector2(0.409768, 0.409768)
+texture = ExtResource("1_fqu43")
+
+[node name="Sprite2D13" type="Sprite2D" parent="."]
+position = Vector2(-272, -136)
+scale = Vector2(0.592344, 0.592344)
+texture = ExtResource("4_6t8py")
+
+[node name="Sprite2D14" type="Sprite2D" parent="."]
+position = Vector2(272, -136)
+scale = Vector2(0.592344, 0.592344)
+texture = ExtResource("4_6t8py")
+
+[node name="Sprite2D15" type="Sprite2D" parent="."]
+position = Vector2(-272, -1.13687e-13)
+scale = Vector2(0.592344, 0.592344)
+texture = ExtResource("5_04w8c")
+
+[node name="Sprite2D16" type="Sprite2D" parent="."]
+position = Vector2(-136, 136)
+scale = Vector2(1.125, 1.125)
+texture = ExtResource("3_mw375")
+
+[node name="Sprite2D17" type="Sprite2D" parent="."]
+position = Vector2(264, -1.13687e-13)
+scale = Vector2(0.592344, 0.592344)
+texture = ExtResource("5_04w8c")
+
+[node name="Sprite2D18" type="Sprite2D" parent="."]
+position = Vector2(136, -1.13687e-13)
+scale = Vector2(0.592344, 0.592344)
+texture = ExtResource("4_6t8py")
+
+[node name="Sprite2D19" type="Sprite2D" parent="."]
+position = Vector2(-136, -1.13687e-13)
+scale = Vector2(0.592344, 0.592344)
+texture = ExtResource("4_6t8py")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 0)
+shape = SubResource("RectangleShape2D_yyj3i")
+one_way_collision = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-276, -132)
+shape = SubResource("RectangleShape2D_qpc5o")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(278.5, -69)
+shape = SubResource("RectangleShape2D_xwb7q")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(278.5, -69)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-6.5, -251)
+shape = SubResource("CapsuleShape2D_crxal")
+
+[node name="clouds2" parent="." instance=ExtResource("7_4rvx1")]
+position = Vector2(-280, 760)
+
+[node name="clouds3" parent="." instance=ExtResource("7_4rvx1")]
+position = Vector2(272, 744)
+
+[node name="clouds4" parent="." instance=ExtResource("7_4rvx1")]
+position = Vector2(-24, 472)
+
+[node name="clouds5" parent="." instance=ExtResource("7_4rvx1")]
+position = Vector2(-208, -728)
+
+[node name="clouds6" parent="." instance=ExtResource("7_4rvx1")]
+position = Vector2(304, -744)
+
+[node name="clouds7" parent="." instance=ExtResource("7_4rvx1")]
+position = Vector2(360, 304)
+
+[node name="clouds8" parent="." instance=ExtResource("7_4rvx1")]
+position = Vector2(-432, 344)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

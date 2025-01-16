@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3 uid="uid://dsi8sihxop4ng"]
+
+[ext_resource type="PackedScene" uid="uid://kfboqpadbl6i" path="res://scenes/player.tscn" id="1_7uf6s"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_jp1dt"]
+[ext_resource type="Texture2D" uid="uid://cjn4w3rp0ou2n" path="res://assets/background/background.png" id="1_v716q"]
+[ext_resource type="PackedScene" uid="uid://ck3qaey4xjv2b" path="res://scenes/clouds.tscn" id="4_baltp"]
+[ext_resource type="PackedScene" uid="uid://ropuynub7ia7" path="res://scenes/pijakan.tscn" id="5_qaw7t"]
+[ext_resource type="FontFile" uid="uid://cnnrk37s4wc1e" path="res://assets/fonts/Jellee-Roman.ttf" id="6_2rrhc"]
+
+[sub_resource type="PackedScene" id="PackedScene_1y1al"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tnum1"]
+size = Vector2(1216, 64)
+
+[node name="game" type="Node2D"]
+script = ExtResource("1_jp1dt")
+scene_platform = SubResource("PackedScene_1y1al")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -128504.0
+offset_top = -55168.0
+offset_right = 115504.0
+offset_bottom = 81576.0
+color = Color(0.396078, 0.607843, 1, 1)
+
+[node name="Background" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(240, 500)
+scale = Vector2(0.332833, 0.562821)
+texture = ExtResource("1_v716q")
+
+[node name="AnimatableBody2D" parent="." instance=ExtResource("5_qaw7t")]
+
+[node name="Player" parent="." instance=ExtResource("1_7uf6s")]
+position = Vector2(400, 1248)
+
+[node name="platform_container" type="Node2D" parent="."]
+position = Vector2(8, 32)
+
+[node name="Clouds" parent="platform_container" instance=ExtResource("4_baltp")]
+position = Vector2(784, 1344)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(540, 960)
+ignore_rotation = false
+
+[node name="Label" type="Label" parent="Camera2D"]
+custom_minimum_size = Vector2(180, 0)
+offset_left = -540.0
+offset_top = -896.0
+offset_right = 540.0
+offset_bottom = -832.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_2rrhc")
+theme_override_font_sizes/font_size = 70
+text = "0
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="platform_eraser" type="Area2D" parent="Camera2D"]
+position = Vector2(-24, 528)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/platform_eraser"]
+position = Vector2(28, 528)
+shape = SubResource("RectangleShape2D_tnum1")
+
+[connection signal="body_entered" from="Camera2D/platform_eraser" to="." method="_on_platform_eraser_body_entered"]

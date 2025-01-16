@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://du107dccwxkmc"]
+
+[ext_resource type="Script" path="res://scripts/ufo.gd" id="1_5w7u6"]
+[ext_resource type="PackedScene" uid="uid://bmwvfltsi6xei" path="res://scenes/Bullet.tscn" id="2_3y655"]
+[ext_resource type="Texture2D" uid="uid://be5aypdfxvvby" path="res://assets/bahan/ifo/ufo.png" id="3_j24yw"]
+[ext_resource type="AudioStream" uid="uid://c2vxsls4ql1w6" path="res://assets/sounds/Pew Pew Sound Effect.wav" id="4_40wb3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i25b1"]
+radius = 113.137
+
+[node name="ufo" type="Node2D" groups=["ufo"]]
+script = ExtResource("1_5w7u6")
+BULLET = ExtResource("2_3y655")
+
+[node name="BaseSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -0.00012207)
+scale = Vector2(0.760135, 0.760135)
+texture = ExtResource("3_j24yw")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(1744, -8)
+
+[node name="ReloadTimer" type="Timer" parent="RayCast2D"]
+wait_time = 0.25
+one_shot = true
+
+[node name="ufo_hitbox" type="Area2D" parent="." groups=["ufo_hitbox"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ufo_hitbox"]
+shape = SubResource("CircleShape2D_i25b1")
+
+[node name="sfx_shoot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_40wb3")
+
+[connection signal="timeout" from="RayCast2D/ReloadTimer" to="." method="_on_ReloadTimer_timeout"]
+[connection signal="area_entered" from="ufo_hitbox" to="." method="_on_ufo_hitbox_area_entered"]

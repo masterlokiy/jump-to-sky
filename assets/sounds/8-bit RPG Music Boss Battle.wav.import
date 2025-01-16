@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://rxom4ay6hs3n"
+path="res://.godot/imported/8-bit RPG Music Boss Battle.wav-10194f2a3271badc5d8083a3a2f21e7b.sample"
+
+[deps]
+
+source_file="res://assets/sounds/8-bit RPG Music Boss Battle.wav"
+dest_files=["res://.godot/imported/8-bit RPG Music Boss Battle.wav-10194f2a3271badc5d8083a3a2f21e7b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

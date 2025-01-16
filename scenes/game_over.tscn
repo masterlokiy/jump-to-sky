@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://d3m574h7l0nak"]
+
+[ext_resource type="Script" path="res://game_over.gd" id="1_trh5e"]
+[ext_resource type="Texture2D" uid="uid://djwrixesghk7i" path="res://assets/background/Clouds/1269904.png" id="2_tyq1r"]
+[ext_resource type="FontFile" uid="uid://b6qo7tq2pj4wa" path="res://assets/fonts/Noot Regular.ttf" id="3_dxka7"]
+[ext_resource type="Texture2D" uid="uid://ij8jaqfide30" path="res://assets/buttons/play.png" id="5_nyywh"]
+[ext_resource type="AudioStream" uid="uid://cce43uqoisqjy" path="res://assets/sounds/8-bit RPG Music Game Over.wav" id="6_oy0i7"]
+[ext_resource type="Texture2D" uid="uid://c67ngjdnqmbvm" path="res://assets/buttons/playpressed.png" id="6_vufv2"]
+[ext_resource type="Texture2D" uid="uid://cfc3msgjbcm1n" path="res://assets/buttons/quit.png" id="7_4imt7"]
+[ext_resource type="Texture2D" uid="uid://gkwofyj61mwv" path="res://assets/buttons/quitpressed.png" id="8_467ca"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a6yre"]
+texture = ExtResource("2_tyq1r")
+modulate_color = Color(0.713726, 0.6, 0.678431, 0.486275)
+
+[node name="game_over" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_trh5e")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_a6yre")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -316.0
+offset_top = 264.0
+offset_right = 313.0
+offset_bottom = 883.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0.87058, 0.000787804, 0.900729, 1)
+theme_override_colors/font_outline_color = Color(0.775343, 0.523893, 0, 1)
+theme_override_constants/shadow_offset_x = 11
+theme_override_constants/shadow_offset_y = 10
+theme_override_fonts/font = ExtResource("3_dxka7")
+theme_override_font_sizes/font_size = 200
+text = "Game
+Over"
+horizontal_alignment = 1
+
+[node name="bgGameOver" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_oy0i7")
+autoplay = true
+
+[node name="play" type="TouchScreenButton" parent="."]
+position = Vector2(632, 912)
+scale = Vector2(2.29412, 2.29412)
+texture_normal = ExtResource("5_nyywh")
+texture_pressed = ExtResource("6_vufv2")
+
+[node name="exit" type="TouchScreenButton" parent="."]
+position = Vector2(160, 928)
+scale = Vector2(2.35294, 2.35294)
+texture_normal = ExtResource("7_4imt7")
+texture_pressed = ExtResource("8_467ca")
+
+[connection signal="pressed" from="play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://ropuynub7ia7"]
+
+[ext_resource type="Texture2D" uid="uid://baabijlwnla1v" path="res://assets/background/background-removebg-preview-resized.png" id="1_ykf0v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hrlio"]
+size = Vector2(1848, 29.25)
+
+[node name="pijakan" type="AnimatableBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["platform"]]
+position = Vector2(542.027, 1712)
+scale = Vector2(1.77423, 4.69438)
+texture = ExtResource("1_ykf0v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(552, 1633.38)
+shape = SubResource("RectangleShape2D_hrlio")

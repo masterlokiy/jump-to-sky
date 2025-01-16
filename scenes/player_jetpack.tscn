@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://bf6ysm16qt4jr"]
+
+[ext_resource type="Texture2D" uid="uid://ecip8h30evtc" path="res://assets/bahan/jetpack/2.png" id="1_cr5o0"]
+[ext_resource type="Texture2D" uid="uid://b6xtl0dwcofsn" path="res://assets/bahan/jetpack/3.png" id="2_1aav6"]
+[ext_resource type="Texture2D" uid="uid://c0gard0woawoq" path="res://assets/bahan/jetpack/4.png" id="3_2obp1"]
+[ext_resource type="Texture2D" uid="uid://c1a2a3famuo16" path="res://assets/sprites/Idle_2.png" id="4_k630y"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6uxx3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_cr5o0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_1aav6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2obp1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1ee6"]
+atlas = ExtResource("4_k630y")
+region = Rect2(0, 0, 106, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6c2hk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1ee6")
+}],
+"loop": true,
+"name": &"diam",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(-4.96875, -22.2113)
+scale = Vector2(0.0313889, 0.0313889)
+sprite_frames = SubResource("SpriteFrames_6uxx3")
+frame_progress = 0.699345
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-16, -64)
+sprite_frames = SubResource("SpriteFrames_6c2hk")
+animation = &"diam"
+frame_progress = 0.729516

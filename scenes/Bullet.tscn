@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmwvfltsi6xei"]
+
+[ext_resource type="Script" path="res://scripts/Bullet.gd" id="1_hvx2i"]
+[ext_resource type="Texture2D" uid="uid://dj5he445mxu0a" path="res://assets/visuals/turret_BULLET.png" id="2_0mq2f"]
+
+[sub_resource type="CircleShape2D" id="1"]
+radius = 5.51146
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mpmcs"]
+radius = 32.0
+
+[node name="Bullet" type="Area2D"]
+script = ExtResource("1_hvx2i")
+SPEED = 400
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(5.25, 5.25)
+texture = ExtResource("2_0mq2f")
+hframes = 2
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("1")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="bullet_hitbox" type="Area2D" parent="." groups=["bullet_hitbox"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bullet_hitbox"]
+shape = SubResource("CircleShape2D_mpmcs")
+
+[connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

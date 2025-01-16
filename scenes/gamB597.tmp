@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dsi8sihxop4ng"]
+
+[ext_resource type="PackedScene" uid="uid://kfboqpadbl6i" path="res://scenes/player.tscn" id="1_7uf6s"]
+[ext_resource type="Texture2D" uid="uid://cjn4w3rp0ou2n" path="res://assets/background/background.png" id="1_v716q"]
+[ext_resource type="PackedScene" uid="uid://ck3qaey4xjv2b" path="res://scenes/clouds.tscn" id="4_baltp"]
+
+[sub_resource type="GDScript" id="GDScript_i1vfm"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_23f6j"]
+distance = -134.0
+
+[node name="Game" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(271, 186)
+scale = Vector2(0.332833, 0.562821)
+texture = ExtResource("1_v716q")
+
+[node name="Player" parent="." instance=ExtResource("1_7uf6s")]
+position = Vector2(251, 335)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, -84)
+zoom = Vector2(4, 4)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+script = SubResource("GDScript_i1vfm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(251, 202)
+shape = SubResource("WorldBoundaryShape2D_23f6j")
+
+[node name="Clouds" parent="." instance=ExtResource("4_baltp")]
+position = Vector2(292, 272)
+script = null

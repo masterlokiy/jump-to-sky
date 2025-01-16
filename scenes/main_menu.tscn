@@ -1,0 +1,88 @@
+[gd_scene load_steps=10 format=3 uid="uid://cy25186c7d1n2"]
+
+[ext_resource type="Texture2D" uid="uid://djwrixesghk7i" path="res://assets/background/Clouds/1269904.png" id="1_65om4"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_ltge7"]
+[ext_resource type="FontFile" uid="uid://b6qo7tq2pj4wa" path="res://assets/fonts/Noot Regular.ttf" id="2_h3mog"]
+[ext_resource type="AudioStream" uid="uid://b8w1xo3k1xapw" path="res://assets/sounds/8-bit RPG Music Shop Theme.wav" id="4_6ve80"]
+[ext_resource type="Texture2D" uid="uid://ij8jaqfide30" path="res://assets/buttons/play.png" id="4_jlo4i"]
+[ext_resource type="Texture2D" uid="uid://c67ngjdnqmbvm" path="res://assets/buttons/playpressed.png" id="5_62mv4"]
+[ext_resource type="Texture2D" uid="uid://cfc3msgjbcm1n" path="res://assets/buttons/quit.png" id="6_vcmn5"]
+[ext_resource type="Texture2D" uid="uid://gkwofyj61mwv" path="res://assets/buttons/quitpressed.png" id="7_maliu"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a6yre"]
+texture = ExtResource("1_65om4")
+modulate_color = Color(0.713726, 0.6, 0.678431, 0.486275)
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ltge7")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_a6yre")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -314.0
+offset_top = 106.0
+offset_right = 315.0
+offset_bottom = 1036.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0.87058, 0.000787804, 0.900729, 1)
+theme_override_colors/font_outline_color = Color(0.775343, 0.523893, 0, 1)
+theme_override_constants/shadow_offset_x = 11
+theme_override_constants/shadow_offset_y = 10
+theme_override_fonts/font = ExtResource("2_h3mog")
+theme_override_font_sizes/font_size = 200
+text = "Jump
+To
+Sky"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -367.5
+offset_top = -1050.0
+offset_right = 367.5
+offset_bottom = -450.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 37
+alignment = 1
+
+[node name="play" type="TouchScreenButton" parent="VBoxContainer"]
+position = Vector2(435.5, 138)
+scale = Vector2(2.29412, 2.29412)
+texture_normal = ExtResource("4_jlo4i")
+texture_pressed = ExtResource("5_62mv4")
+
+[node name="exit" type="TouchScreenButton" parent="VBoxContainer"]
+position = Vector2(-36.5, 154)
+scale = Vector2(2.35294, 2.35294)
+texture_normal = ExtResource("6_vcmn5")
+texture_pressed = ExtResource("7_maliu")
+
+[node name="bgMainmenu" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_6ve80")
+autoplay = true
+
+[connection signal="pressed" from="VBoxContainer/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/exit" to="." method="_on_exit_pressed"]

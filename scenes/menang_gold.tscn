@@ -1,0 +1,89 @@
+[gd_scene load_steps=13 format=3 uid="uid://hgwe0dpt2sdh"]
+
+[ext_resource type="Script" path="res://scripts/menang.gd" id="1_bij3a"]
+[ext_resource type="Texture2D" uid="uid://djwrixesghk7i" path="res://assets/background/Clouds/1269904.png" id="2_an2a5"]
+[ext_resource type="FontFile" uid="uid://b6qo7tq2pj4wa" path="res://assets/fonts/Noot Regular.ttf" id="3_cpujt"]
+[ext_resource type="Texture2D" uid="uid://c71wf1momwxlr" path="res://assets/bahan/star.png" id="6_1tmny"]
+[ext_resource type="Texture2D" uid="uid://ij8jaqfide30" path="res://assets/buttons/play.png" id="6_h34mw"]
+[ext_resource type="AudioStream" uid="uid://chyk1688awyqu" path="res://assets/sounds/8-bit RPG Music Victory Theme.wav" id="7_85uuv"]
+[ext_resource type="Texture2D" uid="uid://c67ngjdnqmbvm" path="res://assets/buttons/playpressed.png" id="7_puw7c"]
+[ext_resource type="Texture2D" uid="uid://dkoflx42u35me" path="res://assets/buttons/repeat.png" id="8_4xjgm"]
+[ext_resource type="Texture2D" uid="uid://dborb5ccymmss" path="res://assets/buttons/repeatpressed.png" id="9_ktfpm"]
+[ext_resource type="Texture2D" uid="uid://cfc3msgjbcm1n" path="res://assets/buttons/quit.png" id="10_u7m7i"]
+[ext_resource type="Texture2D" uid="uid://gkwofyj61mwv" path="res://assets/buttons/quitpressed.png" id="11_4enmg"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wnwyx"]
+texture = ExtResource("2_an2a5")
+modulate_color = Color(0.713726, 0.6, 0.678431, 0.486275)
+
+[node name="menang_gold" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bij3a")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_wnwyx")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -548.0
+offset_top = -712.0
+offset_right = 522.0
+offset_bottom = 224.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.87058, 0.000787804, 0.900729, 1)
+theme_override_colors/font_outline_color = Color(0.775343, 0.523893, 0, 1)
+theme_override_constants/shadow_offset_x = 11
+theme_override_constants/shadow_offset_y = 10
+theme_override_fonts/font = ExtResource("3_cpujt")
+theme_override_font_sizes/font_size = 400
+text = "WIN"
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(488, 920)
+scale = Vector2(2.3756, 2.3756)
+texture = ExtResource("6_1tmny")
+hframes = 3
+
+[node name="bgMenang" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_85uuv")
+autoplay = true
+
+[node name="play" type="TouchScreenButton" parent="."]
+position = Vector2(696, 1120)
+scale = Vector2(1.70588, 1.70588)
+texture_normal = ExtResource("6_h34mw")
+texture_pressed = ExtResource("7_puw7c")
+
+[node name="repeat" type="TouchScreenButton" parent="."]
+position = Vector2(432, 1136)
+scale = Vector2(1.6, 1.63265)
+texture_normal = ExtResource("8_4xjgm")
+texture_pressed = ExtResource("9_ktfpm")
+
+[node name="exit" type="TouchScreenButton" parent="."]
+position = Vector2(152, 1136)
+scale = Vector2(1.70588, 1.70588)
+texture_normal = ExtResource("10_u7m7i")
+texture_pressed = ExtResource("11_4enmg")
+
+[connection signal="pressed" from="play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="repeat" to="." method="_on_repeat_pressed"]
+[connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]

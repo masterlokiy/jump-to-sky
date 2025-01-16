@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctuolnkrqen7w"]
+
+[ext_resource type="Script" path="res://scripts/moving_white_clouds.gd" id="1_x06x5"]
+[ext_resource type="Texture2D" uid="uid://dtgwpufk5j6xk" path="res://assets/bahan/clouds/Clouds_white/Shape2/cloud_shape2_1.png" id="2_5cmqs"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_nbajw"]
+a = Vector2(-403, -55)
+b = Vector2(12, -65)
+
+[node name="moving_white_clouds" type="AnimatableBody2D" groups=["platform"]]
+script = ExtResource("1_x06x5")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["platform"]]
+position = Vector2(2, -79)
+scale = Vector2(1.54753, 2.45565)
+texture = ExtResource("2_5cmqs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(197, -4)
+shape = SubResource("SegmentShape2D_nbajw")
+one_way_collision = true

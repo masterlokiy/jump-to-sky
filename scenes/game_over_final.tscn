@@ -1,0 +1,121 @@
+[gd_scene load_steps=11 format=3 uid="uid://sj2ao14xbcyt"]
+
+[ext_resource type="Script" path="res://scripts/game_over_final.gd" id="1_hwbcp"]
+[ext_resource type="Texture2D" uid="uid://djwrixesghk7i" path="res://assets/background/Clouds/1269904.png" id="2_wfcv2"]
+[ext_resource type="FontFile" uid="uid://b6qo7tq2pj4wa" path="res://assets/fonts/Noot Regular.ttf" id="3_d2a6p"]
+[ext_resource type="Texture2D" uid="uid://2rqip00s0n72" path="res://assets/bahan/ui/play-removebg-preview.png" id="4_xbpbo"]
+[ext_resource type="Texture2D" uid="uid://rq8xi65bwjs3" path="res://assets/bahan/ui/images-removebg-preview.png" id="5_wgxfv"]
+[ext_resource type="AudioStream" uid="uid://cce43uqoisqjy" path="res://assets/sounds/8-bit RPG Music Game Over.wav" id="6_4426t"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a6yre"]
+texture = ExtResource("2_wfcv2")
+modulate_color = Color(0.713726, 0.6, 0.678431, 0.486275)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wt64h"]
+bg_color = Color(0.966027, 0.253874, 0.991208, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_color = Color(1, 1, 1, 0.6)
+shadow_size = 26
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g12xv"]
+bg_color = Color(0.490196, 0, 0.478431, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_color = Color(1, 1, 1, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ixnka"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_color = Color(1, 0.228249, 0.880102, 0.6)
+shadow_size = 26
+
+[node name="game_over_final" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hwbcp")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_a6yre")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -316.0
+offset_top = 264.0
+offset_right = 313.0
+offset_bottom = 883.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0.87058, 0.000787804, 0.900729, 1)
+theme_override_colors/font_outline_color = Color(0.775343, 0.523893, 0, 1)
+theme_override_constants/shadow_offset_x = 11
+theme_override_constants/shadow_offset_y = 10
+theme_override_fonts/font = ExtResource("3_d2a6p")
+theme_override_font_sizes/font_size = 200
+text = "Game
+Over"
+horizontal_alignment = 1
+
+[node name="start" type="Button" parent="."]
+layout_mode = 0
+offset_left = 568.0
+offset_top = 904.0
+offset_right = 797.0
+offset_bottom = 1112.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 80
+theme_override_styles/hover = SubResource("StyleBoxFlat_wt64h")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_g12xv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ixnka")
+text = "
+"
+icon = ExtResource("4_xbpbo")
+icon_alignment = 2
+expand_icon = true
+
+[node name="exit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 904.0
+offset_right = 517.0
+offset_bottom = 1112.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 80
+theme_override_styles/hover = SubResource("StyleBoxFlat_wt64h")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_g12xv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ixnka")
+text = "
+"
+icon = ExtResource("5_wgxfv")
+icon_alignment = 1
+expand_icon = true
+
+[node name="bgGameOver" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_4426t")
+autoplay = true
+
+[connection signal="pressed" from="start" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="start" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="exit" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="exit" to="." method="_on_play_2_pressed"]

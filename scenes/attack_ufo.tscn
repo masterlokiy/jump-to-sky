@@ -1,0 +1,133 @@
+[gd_scene load_steps=25 format=3 uid="uid://drpd4kwwkrjvs"]
+
+[ext_resource type="Script" path="res://scripts/attack_ufo.gd" id="1_iaedy"]
+[ext_resource type="Texture2D" uid="uid://dnyqs7dy10ey4" path="res://assets/bahan/star/collect1.png" id="2_5yafx"]
+[ext_resource type="Texture2D" uid="uid://cv7yavax2desh" path="res://assets/bahan/star/collect2.png" id="3_58728"]
+[ext_resource type="Texture2D" uid="uid://ccsd5bbpd0nki" path="res://assets/bahan/star/collect3.png" id="4_comn5"]
+[ext_resource type="Texture2D" uid="uid://dtu444xoty4cd" path="res://assets/bahan/star/collect4.png" id="5_anpag"]
+[ext_resource type="Texture2D" uid="uid://btorg28pjdh02" path="res://assets/bahan/star/collect5.png" id="6_3qreg"]
+[ext_resource type="Texture2D" uid="uid://boam0dg2yj0tc" path="res://assets/bahan/star/collect6.png" id="7_gsitq"]
+[ext_resource type="Texture2D" uid="uid://cpuq56jufkwlv" path="res://assets/bahan/star/collect7.png" id="8_5b8ud"]
+[ext_resource type="Texture2D" uid="uid://sugmlhgtt1y2" path="res://assets/bahan/star/collect8.png" id="9_r3nub"]
+[ext_resource type="Texture2D" uid="uid://dqukbfjc1jv8d" path="res://assets/bahan/star/collect9.png" id="10_bgtw4"]
+[ext_resource type="Texture2D" uid="uid://q0fyw33vyete" path="res://assets/bahan/star/collect10.png" id="11_w1ct1"]
+[ext_resource type="Texture2D" uid="uid://cr2bw0nj7xwt4" path="res://assets/bahan/star/collect11.png" id="12_8ogn0"]
+[ext_resource type="Texture2D" uid="uid://cxxuxekccg2h" path="res://assets/bahan/star/collect12.png" id="13_7irov"]
+[ext_resource type="Texture2D" uid="uid://c457mh71flnqw" path="res://assets/bahan/star/collect13.png" id="14_sftf0"]
+[ext_resource type="Texture2D" uid="uid://cnqqrhh0unsm0" path="res://assets/bahan/star/collect14.png" id="15_doggj"]
+[ext_resource type="Texture2D" uid="uid://c7cu065v13ju2" path="res://assets/bahan/star/collect15.png" id="16_jr34w"]
+[ext_resource type="Texture2D" uid="uid://ic7invddrbfc" path="res://assets/bahan/star/collect16.png" id="17_p6m3q"]
+[ext_resource type="Texture2D" uid="uid://bgfsq80ofomwe" path="res://assets/bahan/rocket/2.png" id="18_1u1ro"]
+[ext_resource type="Texture2D" uid="uid://bh1frsd0ysrla" path="res://assets/bahan/rocket/1.png" id="19_jxbmk"]
+[ext_resource type="AudioStream" uid="uid://bv5pmdha600lx" path="res://assets/sounds/explosion.wav" id="20_ks56f"]
+[ext_resource type="AudioStream" uid="uid://bewhpt5ctdk27" path="res://assets/sounds/Rocket launcher sound effect.wav" id="21_74sfi"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wepi0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_5yafx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_58728")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_comn5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_anpag")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_3qreg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_gsitq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_5b8ud")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_r3nub")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_bgtw4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_w1ct1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_8ogn0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_7irov")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_sftf0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_doggj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_jr34w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_p6m3q")
+}],
+"loop": false,
+"name": &"collect",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_1u1ro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_jxbmk")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x6p5p"]
+radius = 72.4431
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ud37p"]
+radius = 72.4431
+
+[node name="attack_ufo" type="Area2D"]
+script = ExtResource("1_iaedy")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1.90735e-06, 0)
+scale = Vector2(0.33755, 0.33755)
+sprite_frames = SubResource("SpriteFrames_wepi0")
+animation = &"collect"
+autoplay = "idle"
+frame = 15
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_x6p5p")
+
+[node name="rocket_hitbox" type="Area2D" parent="." groups=["rocket_hitbox"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="rocket_hitbox"]
+shape = SubResource("CircleShape2D_ud37p")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="sfx_explosion" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("20_ks56f")
+
+[node name="sfx_missile" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("21_74sfi")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D2" to="." method="_on_animated_sprite_2d_2_animation_finished"]
+[connection signal="area_entered" from="rocket_hitbox" to="." method="_on_rocket_hitbox_area_entered"]
+[connection signal="area_entered" from="rocket_hitbox" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="rocket_hitbox" to="." method="_on_rocket_hitbox_body_entered"]
+[connection signal="body_entered" from="rocket_hitbox" to="." method="_on_area_2d_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

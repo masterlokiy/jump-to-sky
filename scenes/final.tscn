@@ -1,0 +1,130 @@
+[gd_scene load_steps=19 format=3 uid="uid://kcrutorgqyoy"]
+
+[ext_resource type="Script" path="res://scripts/final.gd" id="1_c7xs2"]
+[ext_resource type="Texture2D" uid="uid://bphcyl52spf0c" path="res://assets/background/bulan.png" id="1_jy5mn"]
+[ext_resource type="PackedScene" uid="uid://bmmyuuicpd76f" path="res://scenes/rocket_moving.tscn" id="2_6sfoy"]
+[ext_resource type="PackedScene" uid="uid://b7ggv7kptkj31" path="res://scenes/clouds.tscn" id="2_hfd2m"]
+[ext_resource type="PackedScene" uid="uid://cv7iq1acpijyy" path="res://scenes/shield_moving.tscn" id="3_f0s6e"]
+[ext_resource type="PackedScene" uid="uid://du107dccwxkmc" path="res://scenes/ufo.tscn" id="4_ube5i"]
+[ext_resource type="PackedScene" uid="uid://boow8qr38k6fe" path="res://scenes/ufohealth_container.tscn" id="5_k42xa"]
+[ext_resource type="Texture2D" uid="uid://d4bfcvxytjlp" path="res://assets/bahan/ui/left.png" id="6_tu5w6"]
+[ext_resource type="Texture2D" uid="uid://d1uqr455etiqa" path="res://assets/bahan/ui/leftpressed.png" id="7_b8k78"]
+[ext_resource type="Texture2D" uid="uid://carpd7qlm7rpv" path="res://assets/bahan/ui/up.png" id="8_kklt5"]
+[ext_resource type="PackedScene" uid="uid://bpcrgfia3n64t" path="res://scenes/spawner.tscn" id="8_ofbf3"]
+[ext_resource type="Texture2D" uid="uid://b2wflr4x6i7jx" path="res://assets/bahan/ui/uppressed.png" id="9_lxdrs"]
+[ext_resource type="Texture2D" uid="uid://bf6gb35eheiyo" path="res://assets/bahan/ui/right.png" id="10_xot18"]
+[ext_resource type="Texture2D" uid="uid://dude33pw1cpt1" path="res://assets/bahan/ui/rightpressed.png" id="11_yhv1e"]
+[ext_resource type="AudioStream" uid="uid://rxom4ay6hs3n" path="res://assets/sounds/8-bit RPG Music Boss Battle.wav" id="12_4oc2n"]
+[ext_resource type="PackedScene" uid="uid://kfboqpadbl6i" path="res://scenes/player.tscn" id="14_nqdjc"]
+[ext_resource type="PackedScene" uid="uid://cjxrq0ppu5aka" path="res://scenes/health_container.tscn" id="17_xp318"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_27jjr"]
+size = Vector2(2192, 281)
+
+[node name="final" type="Node2D" groups=["platform"]]
+script = ExtResource("1_c7xs2")
+items_scene = Array[PackedScene]([ExtResource("2_6sfoy"), ExtResource("3_f0s6e")])
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -128400.0
+offset_top = -55184.0
+offset_right = 115608.0
+offset_bottom = 81560.0
+color = Color(0.396078, 0.607843, 1, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="healthContainer" parent="CanvasLayer" instance=ExtResource("17_xp318")]
+offset_left = 16.0
+offset_top = 1816.0
+offset_right = 664.0
+offset_bottom = 2008.0
+
+[node name="healthContainer2" parent="CanvasLayer" instance=ExtResource("5_k42xa")]
+
+[node name="left" type="TouchScreenButton" parent="CanvasLayer"]
+position = Vector2(80, 1632)
+scale = Vector2(2.48649, 2.48649)
+texture_normal = ExtResource("6_tu5w6")
+texture_pressed = ExtResource("7_b8k78")
+action = "move_left"
+
+[node name="upRight" type="TouchScreenButton" parent="CanvasLayer"]
+position = Vector2(792, 1416)
+scale = Vector2(2.48649, 2.48649)
+texture_normal = ExtResource("8_kklt5")
+texture_pressed = ExtResource("9_lxdrs")
+action = "jump"
+
+[node name="upLeft" type="TouchScreenButton" parent="CanvasLayer"]
+position = Vector2(88, 1416)
+scale = Vector2(2.48649, 2.48649)
+texture_normal = ExtResource("8_kklt5")
+texture_pressed = ExtResource("9_lxdrs")
+action = "jump"
+
+[node name="Right" type="TouchScreenButton" parent="CanvasLayer"]
+position = Vector2(776, 1632)
+scale = Vector2(2.48649, 2.48649)
+texture_normal = ExtResource("10_xot18")
+texture_pressed = ExtResource("11_yhv1e")
+action = "move_right"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Background" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(544, 1072)
+scale = Vector2(1.00173, 1.12502)
+texture = ExtResource("1_jy5mn")
+
+[node name="Player" parent="StaticBody2D" instance=ExtResource("14_nqdjc")]
+position = Vector2(528, 1608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(496, 1772.5)
+shape = SubResource("RectangleShape2D_27jjr")
+
+[node name="ufo" parent="StaticBody2D" instance=ExtResource("4_ube5i")]
+position = Vector2(552, 160)
+
+[node name="Timer" type="Timer" parent="StaticBody2D/ufo"]
+wait_time = 21.012
+
+[node name="platform_container" type="Node2D" parent="."]
+position = Vector2(8, 32)
+
+[node name="Clouds" parent="platform_container" instance=ExtResource("2_hfd2m")]
+position = Vector2(832, 1208)
+
+[node name="Clouds2" parent="platform_container" instance=ExtResource("2_hfd2m")]
+position = Vector2(248, 1472)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(544, 952)
+ignore_rotation = false
+limit_left = -10000004
+
+[node name="Marker2D" type="Marker2D" parent="." groups=["spawn"]]
+position = Vector2(160, 0)
+
+[node name="Marker2D2" type="Marker2D" parent="." groups=["spawn"]]
+position = Vector2(552, 8)
+
+[node name="Marker2D3" type="Marker2D" parent="." groups=["spawn"]]
+position = Vector2(920, 0)
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="Node2D" parent="." instance=ExtResource("8_ofbf3")]
+position = Vector2(544, -32)
+
+[node name="bgBoss" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_4oc2n")
+autoplay = true
+
+[node name="rocket" parent="." instance=ExtResource("2_6sfoy")]
+position = Vector2(752, 1312)
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

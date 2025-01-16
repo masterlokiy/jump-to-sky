@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://c3bkm8hj6x0r6"]
+
+[ext_resource type="Script" path="res://scripts/checkpoint.gd" id="1_h64tk"]
+[ext_resource type="Texture2D" uid="uid://5jcqqwt7nni7" path="res://assets/bahan/checkpoint flag/tile_0111.png" id="1_pxbrb"]
+[ext_resource type="Texture2D" uid="uid://cxbm26brkvu57" path="res://assets/bahan/checkpoint flag/tile_0112.png" id="2_ntowg"]
+[ext_resource type="Texture2D" uid="uid://duotoi2lilqox" path="res://assets/bahan/block/tile_0001.png" id="4_hkgg8"]
+[ext_resource type="Texture2D" uid="uid://u8ng4n6qgyl8" path="res://assets/bahan/block/tile_0003.png" id="5_g1bgi"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1ruch"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_pxbrb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ntowg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_baex7"]
+size = Vector2(188, 88)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4sra"]
+size = Vector2(40, 80)
+
+[node name="StaticBody2D" type="StaticBody2D" groups=["checkpoint"]]
+script = ExtResource("1_h64tk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(40, -32)
+scale = Vector2(6.22222, 4.64236)
+sprite_frames = SubResource("SpriteFrames_1ruch")
+frame_progress = 0.774204
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-48.0001, 56)
+scale = Vector2(5.33334, 5.33333)
+texture = ExtResource("4_hkgg8")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(48, 56)
+scale = Vector2(5.33334, 5.33333)
+texture = ExtResource("5_g1bgi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 60)
+shape = SubResource("RectangleShape2D_baex7")
+one_way_collision = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(4, -32)
+shape = SubResource("RectangleShape2D_i4sra")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

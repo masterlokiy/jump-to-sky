@@ -1,0 +1,151 @@
+[gd_scene load_steps=26 format=3 uid="uid://dsi8sihxop4ng"]
+
+[ext_resource type="PackedScene" uid="uid://kfboqpadbl6i" path="res://scenes/player.tscn" id="1_7uf6s"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_jp1dt"]
+[ext_resource type="Texture2D" uid="uid://cjn4w3rp0ou2n" path="res://assets/background/background.png" id="1_v716q"]
+[ext_resource type="PackedScene" uid="uid://dvcfxx3ajpilb" path="res://scenes/black_clouds.tscn" id="3_q028m"]
+[ext_resource type="PackedScene" uid="uid://b7ggv7kptkj31" path="res://scenes/clouds.tscn" id="4_baltp"]
+[ext_resource type="PackedScene" uid="uid://ctuolnkrqen7w" path="res://scenes/moving_white_clouds.tscn" id="4_e7mhb"]
+[ext_resource type="PackedScene" uid="uid://ropuynub7ia7" path="res://scenes/pijakan.tscn" id="5_qaw7t"]
+[ext_resource type="PackedScene" uid="uid://br17rjbtam8hp" path="res://scenes/spring_platform.tscn" id="5_ykeam"]
+[ext_resource type="FontFile" uid="uid://cnnrk37s4wc1e" path="res://assets/fonts/Jellee-Roman.ttf" id="6_2rrhc"]
+[ext_resource type="PackedScene" uid="uid://c3bkm8hj6x0r6" path="res://scenes/checkpoint.tscn" id="7_cmgob"]
+[ext_resource type="PackedScene" uid="uid://cyelhsjbco3s0" path="res://scenes/shield.tscn" id="8_0l3sf"]
+[ext_resource type="PackedScene" uid="uid://b1cv2vnjjgsnw" path="res://scenes/jetpack.tscn" id="10_1c8xc"]
+[ext_resource type="PackedScene" uid="uid://cjxrq0ppu5aka" path="res://scenes/health_container.tscn" id="11_hobc0"]
+[ext_resource type="PackedScene" uid="uid://d2i28pbi6l2p8" path="res://scenes/stars.tscn" id="12_e2nah"]
+[ext_resource type="Texture2D" uid="uid://b73alnvbrw78r" path="res://assets/bahan/star/stars.png" id="16_02npl"]
+[ext_resource type="PackedScene" uid="uid://c4qxjinfve2n2" path="res://scenes/enemy.tscn" id="16_bue8f"]
+[ext_resource type="AudioStream" uid="uid://tsvk031yvpyy" path="res://assets/sounds/8-bit RPG Music The Adventure Begins.wav" id="17_ttux7"]
+[ext_resource type="PackedScene" uid="uid://h132xx78cnik" path="res://scenes/special_platform.tscn" id="18_e2q7q"]
+[ext_resource type="Texture2D" uid="uid://d4bfcvxytjlp" path="res://assets/bahan/ui/left.png" id="19_kvxsj"]
+[ext_resource type="Texture2D" uid="uid://bf6gb35eheiyo" path="res://assets/bahan/ui/right.png" id="20_av06h"]
+[ext_resource type="Texture2D" uid="uid://d1uqr455etiqa" path="res://assets/bahan/ui/leftpressed.png" id="20_fvmns"]
+[ext_resource type="Texture2D" uid="uid://carpd7qlm7rpv" path="res://assets/bahan/ui/up.png" id="20_yspwv"]
+[ext_resource type="Texture2D" uid="uid://b2wflr4x6i7jx" path="res://assets/bahan/ui/uppressed.png" id="22_jolmt"]
+[ext_resource type="Texture2D" uid="uid://dude33pw1cpt1" path="res://assets/bahan/ui/rightpressed.png" id="24_rm6qy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tnum1"]
+size = Vector2(1856, 208)
+
+[node name="game" type="Node2D" groups=["platform"]]
+script = ExtResource("1_jp1dt")
+scene_platform = Array[PackedScene]([ExtResource("4_baltp"), ExtResource("3_q028m"), ExtResource("4_e7mhb"), ExtResource("5_ykeam"), ExtResource("16_bue8f"), ExtResource("7_cmgob"), ExtResource("12_e2nah"), ExtResource("8_0l3sf"), ExtResource("10_1c8xc"), ExtResource("18_e2q7q")])
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -128504.0
+offset_top = -55192.0
+offset_right = 115504.0
+offset_bottom = 81552.0
+color = Color(0.396078, 0.607843, 1, 1)
+
+[node name="Background" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(240, 500)
+scale = Vector2(0.332833, 0.562821)
+texture = ExtResource("1_v716q")
+
+[node name="AnimatableBody2D" parent="." instance=ExtResource("5_qaw7t")]
+position = Vector2(0, -8)
+
+[node name="Player" parent="." instance=ExtResource("1_7uf6s")]
+position = Vector2(528, 1608)
+
+[node name="item" type="Node2D" parent="."]
+position = Vector2(536, 1312)
+
+[node name="stars" parent="item" instance=ExtResource("12_e2nah")]
+position = Vector2(-8, -8)
+
+[node name="platform_container" type="Node2D" parent="."]
+position = Vector2(8, 32)
+
+[node name="Clouds" parent="platform_container" instance=ExtResource("4_baltp")]
+position = Vector2(832, 1208)
+
+[node name="Clouds2" parent="platform_container" instance=ExtResource("4_baltp")]
+position = Vector2(248, 1472)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(544, 952)
+ignore_rotation = false
+limit_left = -10000004
+
+[node name="numStar" type="Label" parent="Camera2D"]
+custom_minimum_size = Vector2(180, 0)
+offset_left = -456.0
+offset_top = -904.0
+offset_right = 624.0
+offset_bottom = -819.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_2rrhc")
+theme_override_font_sizes/font_size = 70
+text = "0
+"
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Camera2D"]
+custom_minimum_size = Vector2(180, 0)
+offset_left = -540.0
+offset_top = -896.0
+offset_right = 540.0
+offset_bottom = -832.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_2rrhc")
+theme_override_font_sizes/font_size = 70
+text = "0
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="platform_eraser" type="Area2D" parent="Camera2D"]
+position = Vector2(-32, 856)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/platform_eraser"]
+position = Vector2(32, 280)
+shape = SubResource("RectangleShape2D_tnum1")
+
+[node name="Bintang" type="Sprite2D" parent="Camera2D"]
+position = Vector2(-512, -880)
+texture = ExtResource("16_02npl")
+hframes = 6
+vframes = 2
+
+[node name="bgMusic" type="AudioStreamPlayer2D" parent="Camera2D"]
+position = Vector2(-544, -952)
+stream = ExtResource("17_ttux7")
+autoplay = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="healthContainer" parent="CanvasLayer" instance=ExtResource("11_hobc0")]
+
+[node name="left" type="TouchScreenButton" parent="CanvasLayer"]
+position = Vector2(80, 1632)
+scale = Vector2(2.48649, 2.48649)
+texture_normal = ExtResource("19_kvxsj")
+texture_pressed = ExtResource("20_fvmns")
+action = "move_left"
+
+[node name="upRight" type="TouchScreenButton" parent="CanvasLayer"]
+position = Vector2(792, 1416)
+scale = Vector2(2.48649, 2.48649)
+texture_normal = ExtResource("20_yspwv")
+texture_pressed = ExtResource("22_jolmt")
+action = "jump"
+
+[node name="upLeft" type="TouchScreenButton" parent="CanvasLayer"]
+position = Vector2(88, 1416)
+scale = Vector2(2.48649, 2.48649)
+texture_normal = ExtResource("20_yspwv")
+texture_pressed = ExtResource("22_jolmt")
+action = "jump"
+
+[node name="Right" type="TouchScreenButton" parent="CanvasLayer"]
+position = Vector2(776, 1632)
+scale = Vector2(2.48649, 2.48649)
+texture_normal = ExtResource("20_av06h")
+texture_pressed = ExtResource("24_rm6qy")
+action = "move_right"
+
+[connection signal="body_entered" from="Camera2D/platform_eraser" to="." method="_on_platform_eraser_body_entered"]

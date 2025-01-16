@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2yi46jtn6d62"]
+
+[ext_resource type="Texture2D" uid="uid://dnkx8c4u4om4c" path="res://assets/bahan/health/healthnew-removebg-preview.png" id="1_0kcf7"]
+[ext_resource type="Script" path="res://scripts/health_gui.gd" id="1_p7ry2"]
+
+[node name="healthGUI" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(64, 56)
+offset_right = 64.0
+offset_bottom = 56.0
+script = ExtResource("1_p7ry2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.304348, 0.304348)
+texture = ExtResource("1_0kcf7")
+centered = false
+hframes = 3

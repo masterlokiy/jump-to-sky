@@ -1,0 +1,119 @@
+[gd_scene load_steps=21 format=3 uid="uid://mcmejvmquqfn"]
+
+[ext_resource type="Texture2D" uid="uid://dnyqs7dy10ey4" path="res://assets/bahan/star/collect1.png" id="2_k7qdt"]
+[ext_resource type="Texture2D" uid="uid://cv7yavax2desh" path="res://assets/bahan/star/collect2.png" id="3_exw08"]
+[ext_resource type="Texture2D" uid="uid://ccsd5bbpd0nki" path="res://assets/bahan/star/collect3.png" id="4_nvweh"]
+[ext_resource type="Texture2D" uid="uid://dtu444xoty4cd" path="res://assets/bahan/star/collect4.png" id="5_1xuaq"]
+[ext_resource type="Texture2D" uid="uid://btorg28pjdh02" path="res://assets/bahan/star/collect5.png" id="6_4mcew"]
+[ext_resource type="Texture2D" uid="uid://boam0dg2yj0tc" path="res://assets/bahan/star/collect6.png" id="7_gqc0w"]
+[ext_resource type="Texture2D" uid="uid://cpuq56jufkwlv" path="res://assets/bahan/star/collect7.png" id="8_5g10f"]
+[ext_resource type="Texture2D" uid="uid://sugmlhgtt1y2" path="res://assets/bahan/star/collect8.png" id="9_7ej8t"]
+[ext_resource type="Texture2D" uid="uid://dqukbfjc1jv8d" path="res://assets/bahan/star/collect9.png" id="10_ip6aq"]
+[ext_resource type="Texture2D" uid="uid://q0fyw33vyete" path="res://assets/bahan/star/collect10.png" id="11_l60iu"]
+[ext_resource type="Texture2D" uid="uid://cr2bw0nj7xwt4" path="res://assets/bahan/star/collect11.png" id="12_r817v"]
+[ext_resource type="Texture2D" uid="uid://cxxuxekccg2h" path="res://assets/bahan/star/collect12.png" id="13_ye8gf"]
+[ext_resource type="Texture2D" uid="uid://c457mh71flnqw" path="res://assets/bahan/star/collect13.png" id="14_dkgbf"]
+[ext_resource type="Texture2D" uid="uid://cnqqrhh0unsm0" path="res://assets/bahan/star/collect14.png" id="15_wtysl"]
+[ext_resource type="Texture2D" uid="uid://c7cu065v13ju2" path="res://assets/bahan/star/collect15.png" id="16_nh187"]
+[ext_resource type="Texture2D" uid="uid://ic7invddrbfc" path="res://assets/bahan/star/collect16.png" id="17_o4fk8"]
+[ext_resource type="Texture2D" uid="uid://bfvnynf6k72nv" path="res://assets/bahan/shield/rocket with bubble.png" id="18_vqhgb"]
+
+[sub_resource type="GDScript" id="GDScript_s2y6t"]
+script/source = "extends Area2D
+
+
+@onready var collected = $AnimatedSprite2D2
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.is_in_group(\"player\"):
+		collected.play('collect')
+	
+
+func _on_animated_sprite_2d_2_animation_finished() -> void:
+	if collected.animation == \"collect\":
+		queue_free()
+"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wepi0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_k7qdt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_exw08")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nvweh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1xuaq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_4mcew")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_gqc0w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_5g10f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_7ej8t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ip6aq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_l60iu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_r817v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ye8gf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_dkgbf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_wtysl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_nh187")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_o4fk8")
+}],
+"loop": false,
+"name": &"collect",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_vqhgb")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x6p5p"]
+radius = 24.0
+
+[node name="rocket" type="Area2D"]
+script = SubResource("GDScript_s2y6t")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 16)
+scale = Vector2(0.269807, 0.269807)
+sprite_frames = SubResource("SpriteFrames_wepi0")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_x6p5p")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D2" to="." method="_on_animated_sprite_2d_2_animation_finished"]
